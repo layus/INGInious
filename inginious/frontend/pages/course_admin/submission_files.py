@@ -28,10 +28,10 @@ from bson import json_util
 from bson.objectid import ObjectId
 import web
 
-from frontend.base import get_database, get_gridfs
-from frontend.base import renderer
-from frontend.pages.course_admin.utils import get_course_and_check_rights
-from frontend.submission_manager import get_input_from_submission
+from inginious.frontend.base import get_database, get_gridfs
+from inginious.frontend.base import renderer
+from inginious.frontend.pages.course_admin.utils import get_course_and_check_rights
+from inginious.frontend.submission_manager import get_input_from_submission
 
 
 class DownloadSubmissionFiles(object):

@@ -19,7 +19,7 @@
 """ LDAP plugin """
 
 import simpleldap
-import frontend.user
+import inginious.frontend.user
 
 
 def init(plugin_manager, conf):
@@ -30,7 +30,7 @@ def init(plugin_manager, conf):
         ::
 
             {
-                "plugin_module": "frontend.plugins.auth.ldap_auth",
+                "plugin_module": "inginious.frontend.plugins.auth.ldap_auth",
                 "host": "ldap.test.be",
                 "port": 0,
                 "encryption": "ssl",
@@ -85,7 +85,7 @@ def init(plugin_manager, conf):
                 username = conf.get('prefix', '') + user_data["uid"][0]
                 realname = user_data["cn"][0]
 
-                frontend.user.connect_user_internal(username, email, realname)
+                inginious.frontend.user.connect_user_internal(username, email, realname)
                 return True
             else:
                 return False

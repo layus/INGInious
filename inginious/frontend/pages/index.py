@@ -21,10 +21,10 @@ from collections import OrderedDict
 
 import web
 
-from frontend.base import renderer
-from frontend.custom.courses import FrontendCourse
-from frontend.submission_manager import get_user_last_submissions
-import frontend.user as User
+from inginious.frontend.base import renderer
+from inginious.frontend.custom.courses import FrontendCourse
+from inginious.frontend.submission_manager import get_user_last_submissions
+import inginious.frontend.user as User
 
 
 class IndexPage(object):

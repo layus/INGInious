@@ -20,9 +20,9 @@
 from abc import ABCMeta, abstractmethod
 from random import shuffle
 
-from common.base import id_checker
-from common.parsable_text import ParsableText
-from common.tasks_code_boxes import InputBox, MultilineBox, TextBox, FileBox
+from inginious.common.base import id_checker
+from inginious.common.parsable_text import ParsableText
+from inginious.common.tasks_code_boxes import InputBox, MultilineBox, TextBox, FileBox
 
 
 class BasicProblem(object):

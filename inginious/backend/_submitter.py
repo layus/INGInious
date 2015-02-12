@@ -23,7 +23,7 @@ import os.path
 
 import docker
 
-from backend._message_types import JOB_LAUNCHED
+from inginious.backend._message_types import JOB_LAUNCHED
 
 
 def submitter(jobid, inputdata, task_directory, limits, environment, debug, docker_config, output_queue):

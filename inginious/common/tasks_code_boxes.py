@@ -22,8 +22,8 @@ import os.path
 import re
 import sys
 
-from common.base import id_checker, INGIniousConfiguration
-from common.parsable_text import ParsableText
+from inginious.common.base import id_checker, INGIniousConfiguration
+from inginious.common.parsable_text import ParsableText
 
 
 class BasicBox(object):
@@ -89,7 +89,7 @@ class TextBox(BasicBox):
 class FileBox(BasicBox):
 
     """
-        File box. Allow to send a file to the backend.
+        File box. Allow to send a file to the inginious.backend.
         The input for this box must be a dictionnary, containing two keys:
         ::
 

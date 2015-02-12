@@ -21,9 +21,9 @@ from StringIO import StringIO
 import os.path
 import zipfile
 import web
-from common.base import INGIniousConfiguration, id_checker
-from common.task_file_managers.tasks_file_manager import TaskFileManager
-from frontend.pages.course_admin.utils import get_course_and_check_rights
+from inginious.common.base import INGIniousConfiguration, id_checker
+from inginious.common.task_file_managers.tasks_file_manager import TaskFileManager
+from inginious.frontend.pages.course_admin.utils import get_course_and_check_rights
 
 
 def make_zipfile(output_filename, source_dir, exclude):

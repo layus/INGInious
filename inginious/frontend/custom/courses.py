@@ -21,10 +21,10 @@
 from collections import OrderedDict
 from datetime import datetime
 
-from common.courses import Course
-from frontend.accessible_time import AccessibleTime
-from frontend.base import get_database
-from frontend.custom.tasks import FrontendTask
+from inginious.common.courses import Course
+from inginious.frontend.accessible_time import AccessibleTime
+from inginious.frontend.base import get_database
+from inginious.frontend.custom.tasks import FrontendTask
 
 
 class FrontendCourse(Course):
@@ -114,7 +114,7 @@ class FrontendCourse(Course):
 
     def get_user_completion_percentage(self):
         """ Returns the percentage (integer) of completion of this course by the current user """
-        import frontend.user as User
+        import inginious.frontend.user as User
         cache = User.get_data().get_course_data(self.get_id())
         if cache is None:
             return 0
@@ -124,7 +124,7 @@ class FrontendCourse(Course):
 
     def get_user_last_submissions(self, limit=5):
         """ Returns a given number (default 5) of submissions of task from this course """
-        from frontend.submission_manager import get_user_last_submissions as extern_get_user_last_submissions
+        from inginious.frontend.submission_manager import get_user_last_submissions as extern_get_user_last_submissions
         task_ids = []
         for task_id in self.get_tasks():
             task_ids.append(task_id)

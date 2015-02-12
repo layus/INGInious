@@ -18,7 +18,7 @@
 # License along with INGInious.  If not, see <http://www.gnu.org/licenses/>.
 """ Demo auth """
 
-import frontend.user
+import inginious.frontend.user
 
 
 def init(plugin_manager, conf):
@@ -31,7 +31,7 @@ def init(plugin_manager, conf):
         ::
 
             {
-                "plugin_module": "frontend.plugins.auth.demo_auth",
+                "plugin_module": "inginious.frontend.plugins.auth.demo_auth",
                 "users":
                 {
                     "username1":"password1",
@@ -46,7 +46,7 @@ def init(plugin_manager, conf):
         password = login_data["password"]
 
         if conf.get('users', {}).get(login) == password:
-            frontend.user.connect_user_internal(login, "{}@inginious".format(login), login)
+            inginious.frontend.user.connect_user_internal(login, "{}@inginious".format(login), login)
             return True
         else:
             return False

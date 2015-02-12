@@ -26,13 +26,13 @@ import urllib
 
 import web
 
-from common.base import INGIniousConfiguration
-from common.tasks_code_boxes import FileBox
-from common.tasks_problems import MultipleChoiceProblem, BasicCodeProblem
-from frontend.base import renderer
-from frontend.custom.courses import FrontendCourse
-import frontend.submission_manager as submission_manager
-import frontend.user as User
+from inginious.common.base import INGIniousConfiguration
+from inginious.common.tasks_code_boxes import FileBox
+from inginious.common.tasks_problems import MultipleChoiceProblem, BasicCodeProblem
+from inginious.frontend.base import renderer
+from inginious.frontend.custom.courses import FrontendCourse
+import inginious.frontend.submission_manager as submission_manager
+import inginious.frontend.user as User
 
 
 class TaskPage(object):

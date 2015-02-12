@@ -23,10 +23,10 @@ import signal
 import time
 import uuid
 
-from backend._callback_manager import CallbackManager
-from backend._message_types import RUN_JOB, CLOSE
-import backend._pool_manager
-from backend.hook_manager import HookManager
+from inginious.backend._callback_manager import CallbackManager
+from inginious.backend._message_types import RUN_JOB, CLOSE
+import inginious.backend._pool_manager
+from inginious.backend.hook_manager import HookManager
 
 
 def _init_manager():
@@ -106,7 +106,7 @@ class JobManager(object):
             slow_pool_size = len(self._docker_config) + 1
 
         # Start the pool manager
-        self._pool_manager = backend._pool_manager.PoolManager(self._operations_queue, self._done_queue,
+        self._pool_manager = inginious.backend._pool_manager.PoolManager(self._operations_queue, self._done_queue,
                                                                docker_instances, containers_names, tasks_directory, fast_pool_size, slow_pool_size, containers_hard)
         self._pool_manager.start()
 

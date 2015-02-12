@@ -18,9 +18,9 @@
 # License along with INGInious.  If not, see <http://www.gnu.org/licenses/>.
 """ RST task file manager """
 
-from common.task_file_managers._dicttorst import dict2rst
-from common.task_file_managers._rsttodict import rst2dict
-from common.task_file_managers.tasks_file_manager import TaskFileManager
+from inginious.common.task_file_managers._dicttorst import dict2rst
+from inginious.common.task_file_managers._rsttodict import rst2dict
+from inginious.common.task_file_managers.tasks_file_manager import TaskFileManager
 
 
 class TaskRSTFileManager(TaskFileManager):

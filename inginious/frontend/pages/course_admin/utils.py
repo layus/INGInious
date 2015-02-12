@@ -25,10 +25,10 @@ import csv
 
 import web
 
-from frontend.base import get_template_renderer
-from frontend.custom.courses import FrontendCourse
-from frontend.plugins.plugin_manager import PluginManager
-import frontend.user as User
+from inginious.frontend.base import get_template_renderer
+from inginious.frontend.custom.courses import FrontendCourse
+from inginious.frontend.plugins.plugin_manager import PluginManager
+import inginious.frontend.user as User
 
 
 def get_course_and_check_rights(courseid, taskid=None):

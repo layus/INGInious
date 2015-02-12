@@ -23,12 +23,12 @@ import json
 
 from bson.objectid import ObjectId
 
-from backend.job_manager import JobManager
-from common.base import INGIniousConfiguration
-from frontend.base import get_database, get_gridfs
-from frontend.plugins.plugin_manager import PluginManager
-import frontend.user as User
-from frontend.user_data import UserData
+from inginious.backend.job_manager import JobManager
+from inginious.common.base import INGIniousConfiguration
+from inginious.frontend.base import get_database, get_gridfs
+from inginious.frontend.plugins.plugin_manager import PluginManager
+import inginious.frontend.user as User
+from inginious.frontend.user_data import UserData
 job_managers = []
 
 

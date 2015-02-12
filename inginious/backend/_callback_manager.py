@@ -18,7 +18,7 @@
 # License along with INGInious.  If not, see <http://www.gnu.org/licenses/>.
 """ Contains the class CallbackManager, used by JobManager. Runs the callbacks. """
 import threading
-from common.parsable_text import ParsableText
+from inginious.common.parsable_text import ParsableText
 
 
 class CallbackManager(threading.Thread):

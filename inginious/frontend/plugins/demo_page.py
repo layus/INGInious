@@ -30,5 +30,5 @@ class DemoPage(object):
 
 def init(plugin_manager, _):
     """ Init the plugin """
-    plugin_manager.add_page("/test", "frontend.plugins.demo_page.DemoPage")
+    plugin_manager.add_page("/test", "inginious.frontend.plugins.demo_page.DemoPage")
     print "Started Demo Page"

@@ -109,7 +109,7 @@ def init(plugin_manager, config):
         ::
 
             {
-                "plugin_module": "frontend.plugins.git_repo",
+                "plugin_module": "inginious.frontend.plugins.git_repo",
                 "repo_directory": "./repo_submissions"
             }
 

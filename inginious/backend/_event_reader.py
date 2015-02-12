@@ -21,7 +21,7 @@ import json
 
 import docker
 
-from backend._message_types import CONTAINER_DONE
+from inginious.backend._message_types import CONTAINER_DONE
 
 
 def event_reader(docker_instance_id, docker_config, output_queue):

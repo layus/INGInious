@@ -20,7 +20,7 @@
 import collections
 import json
 
-from common.task_file_managers.tasks_file_manager import TaskFileManager
+from inginious.common.task_file_managers.tasks_file_manager import TaskFileManager
 
 
 class TaskJSONFileManager(TaskFileManager):

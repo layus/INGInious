@@ -20,7 +20,7 @@
 from docutils import core
 import cgi
 
-from common.base import INGIniousConfiguration
+from inginious.common.base import INGIniousConfiguration
 
 
 class ParsableText(object):

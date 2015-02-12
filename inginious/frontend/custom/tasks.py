@@ -17,16 +17,16 @@
 # You should have received a copy of the GNU Affero General Public
 # License along with INGInious.  If not, see <http://www.gnu.org/licenses/>.
 """ Classes modifying basic tasks, problems and boxes classes """
-from common.base import id_checker
-from common.parsable_text import ParsableText
-from common.task_file_managers.tasks_file_manager import TaskFileManager
-import common.tasks
-from frontend.accessible_time import AccessibleTime
-from frontend.custom.task_problems import DisplayableCodeProblem, DisplayableCodeSingleLineProblem, DisplayableMatchProblem, DisplayableMultipleChoiceProblem, DisplayableCodeFileProblem
-from frontend.plugins.plugin_manager import PluginManager
+from inginious.common.base import id_checker
+from inginious.common.parsable_text import ParsableText
+from inginious.common.task_file_managers.tasks_file_manager import TaskFileManager
+import inginious.common.tasks
+from inginious.frontend.accessible_time import AccessibleTime
+from inginious.frontend.custom.task_problems import DisplayableCodeProblem, DisplayableCodeSingleLineProblem, DisplayableMatchProblem, DisplayableMultipleChoiceProblem, DisplayableCodeFileProblem
+from inginious.frontend.plugins.plugin_manager import PluginManager
 
 
-class FrontendTask(common.tasks.Task):
+class FrontendTask(inginious.common.tasks.Task):
 
     """ A task that stores additionnal context informations """
 
@@ -50,7 +50,7 @@ class FrontendTask(common.tasks.Task):
         PluginManager.get_instance().call_hook('modify_task_data', course=course, taskid=taskid, data=init_data)
 
         # Now init the task
-        common.tasks.Task.__init__(self, course, taskid, init_data)
+        inginious.common.tasks.Task.__init__(self, course, taskid, init_data)
 
         self._name = self._data.get('name', 'Task {}'.format(taskid))
 
@@ -99,7 +99,7 @@ class FrontendTask(common.tasks.Task):
 
     def get_user_status(self):
         """ Returns "succeeded" if the current user solved this task, "failed" if he failed, and "notattempted" if he did not try it yet """
-        import frontend.user as User  # insert here to avoid initialisation of session
+        import inginious.frontend.user as User  # insert here to avoid initialisation of session
         task_cache = User.get_data().get_task_data(self.get_course_id(), self.get_id())
         if task_cache is None:
             return "notviewed"

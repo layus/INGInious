@@ -21,7 +21,7 @@ import json
 
 import docker
 
-from backend._message_types import JOB_RESULT
+from inginious.backend._message_types import JOB_RESULT
 
 
 def result_getter(jobid, containerid, docker_config, output_queue):

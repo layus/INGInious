@@ -23,7 +23,7 @@ import json
 
 import web
 
-from common.tasks_code_boxes import TextBox, InputBox, MultilineBox, FileBox
+from inginious.common.tasks_code_boxes import TextBox, InputBox, MultilineBox, FileBox
 class DisplayableBox(object):
 
     """ A basic interface for displayable boxes """

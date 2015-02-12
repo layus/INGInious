@@ -18,9 +18,9 @@
 # License along with INGInious.  If not, see <http://www.gnu.org/licenses/>.
 """ Helper for the templates """
 
-from frontend.base import add_to_template_globals
-import frontend.pages.course_admin.utils
-from frontend.plugins.plugin_manager import PluginManager
+from inginious.frontend.base import add_to_template_globals
+import inginious.frontend.pages.course_admin.utils
+from inginious.frontend.plugins.plugin_manager import PluginManager
 
 
 def generic_hook(name, **kwargs):
@@ -36,7 +36,7 @@ class TemplateHelper(object):
     _instance = None
     _base_helpers = {"header_hook": (lambda **kwargs: generic_hook('header_html', **kwargs)),
                      "course_menu": (lambda **kwargs: generic_hook('course_menu', **kwargs)),
-                     "course_admin_menu": frontend.pages.course_admin.utils.get_menu}
+                     "course_admin_menu": inginious.frontend.pages.course_admin.utils.get_menu}
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:

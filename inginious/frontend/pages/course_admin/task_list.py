@@ -19,10 +19,10 @@
 from collections import OrderedDict
 import web
 
-from common.task_file_managers.tasks_file_manager import TaskFileManager
-from frontend.base import get_database
-from frontend.base import renderer
-from frontend.pages.course_admin.utils import make_csv, get_course_and_check_rights
+from inginious.common.task_file_managers.tasks_file_manager import TaskFileManager
+from inginious.frontend.base import get_database
+from inginious.frontend.base import renderer
+from inginious.frontend.pages.course_admin.utils import make_csv, get_course_and_check_rights
 
 
 class CourseTaskListPage(object):

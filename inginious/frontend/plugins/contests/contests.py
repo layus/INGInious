@@ -27,10 +27,10 @@ import json
 import pymongo
 import web
 
-from frontend.base import get_template_renderer, get_database
-from frontend.custom.courses import FrontendCourse
-from frontend.pages.course_admin.utils import get_course_and_check_rights
-from frontend.user_data import UserData
+from inginious.frontend.base import get_template_renderer, get_database
+from inginious.frontend.custom.courses import FrontendCourse
+from inginious.frontend.pages.course_admin.utils import get_course_and_check_rights
+from inginious.frontend.user_data import UserData
 
 
 def add_admin_menu(course):
@@ -240,7 +240,7 @@ def init(plugin_manager, config):
         ::
 
             {
-                "plugin_module": "frontend.plugins.contests.contests"
+                "plugin_module": "inginious.frontend.plugins.contests.contests"
             }
     """
 

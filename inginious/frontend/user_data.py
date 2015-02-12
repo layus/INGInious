@@ -17,8 +17,8 @@
 # You should have received a copy of the GNU Affero General Public
 # License along with INGInious.  If not, see <http://www.gnu.org/licenses/>.
 """ Contains the UserData class that helps to manage saved statistical data of a user """
-from frontend.base import get_database, add_to_template_globals
-from frontend.custom.courses import FrontendCourse
+from inginious.frontend.base import get_database, add_to_template_globals
+from inginious.frontend.custom.courses import FrontendCourse
 
 
 class UserData(object):

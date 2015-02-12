@@ -19,8 +19,8 @@
 """ Plugin Manager """
 import importlib
 
-from backend.hook_manager import HookManager
-import frontend.base
+from inginious.backend.hook_manager import HookManager
+import inginious.frontend.base
 
 
 class PluginManager(HookManager):
@@ -44,7 +44,7 @@ class PluginManager(HookManager):
         self.authentication = []
         self._config = config
 
-        frontend.base.add_to_template_globals("PluginManager", self)
+        inginious.frontend.base.add_to_template_globals("PluginManager", self)
 
     def load(self):
         """ Loads the plugin manager. Must be done after the initialisation of the backend """

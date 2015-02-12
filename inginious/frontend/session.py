@@ -21,8 +21,8 @@ import copy
 
 import web
 
-from frontend.base import get_database
-from frontend.session_mongodb import MongoStore
+from inginious.frontend.base import get_database
+from inginious.frontend.session_mongodb import MongoStore
 def get_session():
     """ Returns the current session """
     return get_session.session

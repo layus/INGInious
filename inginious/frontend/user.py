@@ -19,12 +19,12 @@
 """ Manages users' sessions """
 import sys
 
-from frontend.plugins.plugin_manager import PluginManager
-from frontend.session import get_session
-from frontend.user_data import UserData
-import frontend.base
+from inginious.frontend.plugins.plugin_manager import PluginManager
+from inginious.frontend.session import get_session
+from inginious.frontend.user_data import UserData
+import inginious.frontend.base
 # Add this module to the templates
-frontend.base.add_to_template_globals("User", sys.modules[__name__])
+inginious.frontend.base.add_to_template_globals("User", sys.modules[__name__])
 
 
 def get_data():

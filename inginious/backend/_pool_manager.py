@@ -21,11 +21,11 @@ from collections import deque
 import multiprocessing
 import signal
 
-from backend._deleter import deleter
-from backend._event_reader import event_reader
-from backend._message_types import CONTAINER_DONE, JOB_LAUNCHED, JOB_RESULT, RUN_JOB, CLOSE
-from backend._result_getter import result_getter
-from backend._submitter import submitter
+from inginious.backend._deleter import deleter
+from inginious.backend._event_reader import event_reader
+from inginious.backend._message_types import CONTAINER_DONE, JOB_LAUNCHED, JOB_RESULT, RUN_JOB, CLOSE
+from inginious.backend._result_getter import result_getter
+from inginious.backend._submitter import submitter
 
 
 def _init_worker():

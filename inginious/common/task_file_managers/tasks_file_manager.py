@@ -21,7 +21,7 @@ from abc import ABCMeta, abstractmethod
 import codecs
 import os.path
 
-from common.base import INGIniousConfiguration
+from inginious.common.base import INGIniousConfiguration
 
 
 class TaskFileManager(object):

@@ -25,13 +25,13 @@ from zipfile import ZipFile
 
 import web
 
-from common.base import INGIniousConfiguration, id_checker
-from common.task_file_managers.tasks_file_manager import TaskFileManager
-from frontend.accessible_time import AccessibleTime
-from frontend.base import renderer
-from frontend.custom.courses import FrontendCourse
-from frontend.custom.tasks import FrontendTask
-from frontend.pages.course_admin.utils import get_course_and_check_rights
+from inginious.common.base import INGIniousConfiguration, id_checker
+from inginious.common.task_file_managers.tasks_file_manager import TaskFileManager
+from inginious.frontend.accessible_time import AccessibleTime
+from inginious.frontend.base import renderer
+from inginious.frontend.custom.courses import FrontendCourse
+from inginious.frontend.custom.tasks import FrontendTask
+from inginious.frontend.pages.course_admin.utils import get_course_and_check_rights
 
 
 class CourseEditTask(object):

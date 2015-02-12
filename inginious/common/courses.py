@@ -21,16 +21,16 @@ import json
 import os
 import os.path
 
-from common.base import INGIniousConfiguration, id_checker
-from common.task_file_managers.tasks_file_manager import TaskFileManager
-import common.tasks
+from inginious.common.base import INGIniousConfiguration, id_checker
+from inginious.common.task_file_managers.tasks_file_manager import TaskFileManager
+import inginious.common.tasks
 
 
 class Course(object):
 
     """ Represents a course """
 
-    _task_class = common.tasks.Task
+    _task_class = inginious.common.tasks.Task
 
     @classmethod
     def get_course_descriptor_path(cls, courseid):

@@ -19,9 +19,9 @@
 """ Course page """
 import web
 
-from frontend.base import renderer
-from frontend.custom.courses import FrontendCourse
-import frontend.user as User
+from inginious.frontend.base import renderer
+from inginious.frontend.custom.courses import FrontendCourse
+import inginious.frontend.user as User
 # Course page
 
 

@@ -18,8 +18,8 @@
 # License along with INGInious.  If not, see <http://www.gnu.org/licenses/>.
 """ Updates the database """
 import pymongo
-from frontend.base import get_database
-from frontend.custom.courses import FrontendCourse
+from inginious.frontend.base import get_database
+from inginious.frontend.custom.courses import FrontendCourse
 
 
 def update_database():

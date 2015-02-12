@@ -21,9 +21,9 @@ import json
 
 import web
 
-from backend.job_manager_sync import JobManagerSync
-from common.courses import Course
-import frontend.submission_manager
+from inginious.backend.job_manager_sync import JobManagerSync
+from inginious.common.courses import Course
+import inginious.frontend.submission_manager
 def init(plugin_manager, config):
     """
         Init the edx plugin.
@@ -31,7 +31,7 @@ def init(plugin_manager, config):
         ::
 
             {
-                "plugin_module": "frontend.plugins.edx",
+                "plugin_module": "inginious.frontend.plugins.edx",
                 "courseid": "edx",
                 "page_pattern": "/edx"
             }
@@ -41,7 +41,7 @@ def init(plugin_manager, config):
     course = Course(courseid)
     page_pattern = config.get('page_pattern', '/edx')
 
-    job_manager_sync = JobManagerSync(frontend.submission_manager.get_job_manager())
+    job_manager_sync = JobManagerSync(inginious.frontend.submission_manager.get_job_manager())
 
     class EDX(object):
 

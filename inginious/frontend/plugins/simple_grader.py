@@ -22,10 +22,10 @@ import re
 
 import web
 
-from backend.job_manager_buffer import JobManagerBuffer
-from backend.job_manager_sync import JobManagerSync
-from common.courses import Course
-import frontend.submission_manager
+from inginious.backend.job_manager_buffer import JobManagerBuffer
+from inginious.backend.job_manager_sync import JobManagerSync
+from inginious.common.courses import Course
+import inginious.frontend.submission_manager
 
 
 def init(plugin_manager, config):
@@ -35,7 +35,7 @@ def init(plugin_manager, config):
         ::
 
             {
-                "plugin_module": "frontend.plugins.simple_grader",
+                "plugin_module": "inginious.frontend.plugins.simple_grader",
                 "courseid": "external",
                 "page_pattern": "/external",
                 "return_fields": "^(result|text|problems)$"
@@ -129,8 +129,8 @@ def init(plugin_manager, config):
     page_pattern = config.get('page_pattern', '/external')
     return_fields = re.compile(config.get('return_fields', '^(result|text|problems)$'))
 
-    job_manager_buffer = JobManagerBuffer(frontend.submission_manager.get_job_manager())
-    job_manager_sync = JobManagerSync(frontend.submission_manager.get_job_manager())
+    job_manager_buffer = JobManagerBuffer(inginious.frontend.submission_manager.get_job_manager())
+    job_manager_sync = JobManagerSync(inginious.frontend.submission_manager.get_job_manager())
 
     class ExternalGrader(object):
 

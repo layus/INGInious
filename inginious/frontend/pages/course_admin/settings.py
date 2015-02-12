@@ -21,10 +21,10 @@ import json
 
 import web
 
-from frontend.accessible_time import AccessibleTime
-from frontend.base import renderer
-from frontend.pages.course_admin.utils import get_course_and_check_rights
-import frontend.user as User
+from inginious.frontend.accessible_time import AccessibleTime
+from inginious.frontend.base import renderer
+from inginious.frontend.pages.course_admin.utils import get_course_and_check_rights
+import inginious.frontend.user as User
 
 
 class CourseSettings(object):
