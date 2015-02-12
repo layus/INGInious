@@ -23,9 +23,9 @@
         checktask course_id/task_id
 """
 import sys
-from frontend.custom.courses import FrontendCourse
-from frontend.custom.tasks import FrontendTask
-import common.base
+from inginious.frontend.custom.courses import FrontendCourse
+from inginious.frontend.custom.tasks import FrontendTask
+import inginious.common.base
 
 
 def usage():
@@ -42,11 +42,11 @@ courseid = ids[0]
 taskid = ids[1]
 
 # Change default path to task Directory
-common.base.INGIniousConfiguration.load("./configuration.json")
-taskdir= common.base.INGIniousConfiguration['tasks_directory'] + '/' + courseid + '/' + taskid
+inginious.common.base.INGIniousConfiguration.load("./configuration.json")
+taskdir= inginious.common.base.INGIniousConfiguration['tasks_directory'] + '/' + courseid + '/' + taskid
 
 # HTML Tidy
-common.base.INGIniousConfiguration["allow_html"] = "tidy"
+inginious.common.base.INGIniousConfiguration["allow_html"] = "tidy"
 
 try:
     FrontendTask(FrontendCourse(courseid), taskid)

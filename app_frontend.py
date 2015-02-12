@@ -22,46 +22,46 @@
 import web
 
 import common.base
-from frontend import submission_manager
-import frontend.base
-from frontend.database_updater import update_database
-from frontend.plugins.plugin_manager import PluginManager
-import frontend.session
-from frontend.template_helper import TemplateHelper
+from inginious.frontend import submission_manager
+import inginious.frontend.base
+from inginious.frontend.database_updater import update_database
+from inginious.frontend.plugins.plugin_manager import PluginManager
+import inginious.frontend.session
+from inginious.frontend.template_helper import TemplateHelper
 urls = (
-    '/', 'frontend.pages.index.IndexPage',
-    '/index', 'frontend.pages.index.IndexPage',
-    '/course/([^/]+)', 'frontend.pages.course.CoursePage',
-    '/course/([^/]+)/([^/]+)', 'frontend.pages.tasks.TaskPage',
-    '/course/([^/]+)/([^/]+)/(.*)', 'frontend.pages.tasks.TaskPageStaticDownload',
-    '/admin/([^/]+)', 'frontend.pages.course_admin.settings.CourseSettings',
-    '/admin/([^/]+)/settings', 'frontend.pages.course_admin.settings.CourseSettings',
-    '/admin/([^/]+)/students', 'frontend.pages.course_admin.student_list.CourseStudentListPage',
-    '/admin/([^/]+)/student/([^/]+)', 'frontend.pages.course_admin.student_info.CourseStudentInfoPage',
-    '/admin/([^/]+)/student/([^/]+)/([^/]+)', 'frontend.pages.course_admin.student_task.CourseStudentTaskPage',
-    '/admin/([^/]+)/tasks', 'frontend.pages.course_admin.task_list.CourseTaskListPage',
-    '/admin/([^/]+)/task/([^/]+)', 'frontend.pages.course_admin.task_info.CourseTaskInfoPage',
-    '/admin/([^/]+)/edit/([^/]+)', 'frontend.pages.course_admin.task_edit.CourseEditTask',
-    '/admin/([^/]+)/files/([^/]+)', 'frontend.pages.course_admin.task_file.DownloadTaskFiles',
-    '/admin/([^/]+)/submissions', 'frontend.pages.course_admin.submission_files.DownloadSubmissionFiles'
+    '/', 'inginious.frontend.pages.index.IndexPage',
+    '/index', 'inginious.frontend.pages.index.IndexPage',
+    '/course/([^/]+)', 'inginious.frontend.pages.course.CoursePage',
+    '/course/([^/]+)/([^/]+)', 'inginious.frontend.pages.tasks.TaskPage',
+    '/course/([^/]+)/([^/]+)/(.*)', 'inginious.frontend.pages.tasks.TaskPageStaticDownload',
+    '/admin/([^/]+)', 'inginious.frontend.pages.course_admin.settings.CourseSettings',
+    '/admin/([^/]+)/settings', 'inginious.frontend.pages.course_admin.settings.CourseSettings',
+    '/admin/([^/]+)/students', 'inginious.frontend.pages.course_admin.student_list.CourseStudentListPage',
+    '/admin/([^/]+)/student/([^/]+)', 'inginious.frontend.pages.course_admin.student_info.CourseStudentInfoPage',
+    '/admin/([^/]+)/student/([^/]+)/([^/]+)', 'inginious.frontend.pages.course_admin.student_task.CourseStudentTaskPage',
+    '/admin/([^/]+)/tasks', 'inginious.frontend.pages.course_admin.task_list.CourseTaskListPage',
+    '/admin/([^/]+)/task/([^/]+)', 'inginious.frontend.pages.course_admin.task_info.CourseTaskInfoPage',
+    '/admin/([^/]+)/edit/([^/]+)', 'inginious.frontend.pages.course_admin.task_edit.CourseEditTask',
+    '/admin/([^/]+)/files/([^/]+)', 'inginious.frontend.pages.course_admin.task_file.DownloadTaskFiles',
+    '/admin/([^/]+)/submissions', 'inginious.frontend.pages.course_admin.submission_files.DownloadSubmissionFiles'
 )
 
 
 def get_app(config_file):
     """ Get the application. config_file is the path to the JSON configuration file """
     appli = web.application(urls, globals(), autoreload=False)
-    common.base.INGIniousConfiguration.load(config_file)
+    inginious.common.base.INGIniousConfiguration.load(config_file)
 
-    frontend.base.init_database()
+    inginious.frontend.base.init_database()
     update_database()
-    frontend.session.init(appli)
+    inginious.frontend.session.init(appli)
 
     def not_found():
         """ Display the error 404 page """
-        return web.notfound(frontend.base.renderer.notfound('Page not found'))
+        return web.notfound(inginious.frontend.base.renderer.notfound('Page not found'))
     appli.notfound = not_found
 
-    plugin_manager = PluginManager(appli, common.base.INGIniousConfiguration.get("plugins", []))
+    plugin_manager = PluginManager(appli, inginious.common.base.INGIniousConfiguration.get("plugins", []))
 
     # Plugin Manager is also a Hook Manager
     submission_manager.init_backend_interface(plugin_manager)
