@@ -20,8 +20,10 @@
 """ Starts the frontend """
 
 import web
+import os
 
-import common.base
+import inginious
+import inginious.common.base
 from inginious.frontend import submission_manager
 import inginious.frontend.base
 from inginious.frontend.database_updater import update_database
@@ -76,4 +78,5 @@ def get_app(config_file):
 
 if __name__ == "__main__":
     app = get_app("./configuration.json")
+    os.chdir(os.path.dirname(inginious.__file__))
     app.run()

@@ -20,7 +20,9 @@
 from gridfs import GridFS
 from pymongo import MongoClient
 import web
+import os
 from inginious.common.base import INGIniousConfiguration
+import inginious
 
 
 def add_to_template_globals(name, value):
@@ -35,7 +37,7 @@ def get_template_renderer(dir_path, base=None):
     """
     return web.template.render(dir_path, globals=add_to_template_globals.globals, base=base)
 
-renderer = get_template_renderer('templates/', 'layout')
+renderer = get_template_renderer(os.path.dirname(inginious.__file__)+'/templates/', 'layout')
 
 
 def new_database_client():

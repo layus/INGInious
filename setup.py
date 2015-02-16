@@ -21,18 +21,25 @@ setup(
     # installed or upgraded on the target machine
     install_requires = ['pymongo', 'pytidylib', 'docker-py', 'sh', 'web.py', 'docutils', 'simpleldap', 'webtest'],
 
-    #package_data = {
-    #    # If any package contains *.txt or *.rst files, include them:
-    #    '': ['*.txt', '*.rst'],
-    #    # And include any *.msg files found in the 'hello' package, too:
-    #    'hello': ['*.msg'],
-    #}
+    include_package_data=True,
+    package_data = {
+        "inginious" : [
+            "static/*.*",
+            "static/*/*.*",
+            "static/*/*/*.*",
+            "templates/*.html",
+            "templates/tasks/*.html",
+        ],
+        #"inginious.static" : ["*"],
+        #"inginious.templates" : ["*"],
+    },
 
     # metadata for upload to PyPI
-    author = "INGI Deprtment @ UCL",
-    #author_email = "me@example.com",
+    author = "INGI Department @ UCLouvain",
+    author_email = "inginious@info.ucl.ac.be",
+
     description = "INGInious is an intelligent grader that allows secured and automated testing of code made by students.",
-    license = "AGPL",
+    license="LICENSE",
     #keywords = "hello world example examples",
     url = "https://github.com/UCL-INGI/INGInious",
     long_description = read('README.md')
