@@ -76,7 +76,18 @@ def get_app(config_file):
 
     return appli
 
+def get_config():
+    for loc in [ # search in the following locations:
+            os.curdir,
+            #os.path.expanduser("~"),
+            "/etc/inginious",
+            os.environ.get("INGINIOUS_CONF"),
+        ]:
+            filename = os.path.join(loc,"configuration.json")
+            return filename if os.path.exists(filename)
+    raise "Cannot find configuration.json !"
+
 if __name__ == "__main__":
-    app = get_app("./configuration.json")
+    app = get_app(get_config())
     os.chdir(os.path.dirname(inginious.__file__))
     app.run()
