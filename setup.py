@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name = "INGInious",
-    version = "0.0.1",
+    version = "0.0.2",
     #packages = [''],
     scripts = ['checktask', 'testtask', 'app_frontend.py'],
     #packages = ['inginious.frontend', 'inginious.backend', 'inginious.common'],
@@ -30,6 +30,7 @@ setup(
             "templates/*.html",
             "templates/tasks/*.html",
         ],
+        "" : ["configuration.example.json"],
         #"inginious.static" : ["*"],
         #"inginious.templates" : ["*"],
     },
