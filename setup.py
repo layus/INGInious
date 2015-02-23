@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name = "INGInious",
-    version = "0.0",
+    version = "0.0.1",
     #packages = [''],
     scripts = ['checktask', 'testtask', 'app_frontend.py'],
     #packages = ['inginious.frontend', 'inginious.backend', 'inginious.common'],
