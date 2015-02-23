@@ -84,7 +84,8 @@ def get_config():
             os.environ.get("INGINIOUS_CONF"),
         ]:
             filename = os.path.join(loc,"configuration.json")
-            return filename if os.path.exists(filename)
+            if os.path.exists(filename):
+                return filename
     raise "Cannot find configuration.json !"
 
 if __name__ == "__main__":
