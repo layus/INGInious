@@ -77,13 +77,18 @@ def get_app(config_file):
     return appli
 
 def get_config():
-    for loc in [ # search in the following locations:
-            os.curdir,
-            #os.path.expanduser("~"),
-            "/etc/inginious",
-            os.environ.get("INGINIOUS_CONF"),
+    for filename in [
+            # search in the following locations (freely inspired from ansible):
+            # * INGINIOUS_CONFIG (an environment variable)
+            # * configuration.json (in the current directory)
+            # * .inginious.json (in the home directory)
+            # * /etc/inginious/configuration.json
+
+            os.environ.get("INGINIOUS_CONF", ""),
+            os.path.join(os.curdir, "configuration.json"),
+            os.path.join(os.path.expanduser("~"), ".inginious.json"),
+            "/etc/inginious/configuration.json",
         ]:
-            filename = os.path.join(loc,"configuration.json")
             if os.path.exists(filename):
                 return filename
     raise "Cannot find configuration.json !"
