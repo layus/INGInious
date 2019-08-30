@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>CodeMirror Playground</title>
+
+  <script type="text/javascript" src="a_data/jquery-1.js"></script>
+  <link rel="stylesheet" type="text/css" href="a_data/result-light.css">
+  <script type="text/javascript" src="a_data/codemirror.js"></script>
+  <link rel="stylesheet" type="text/css" href="a_data/codemirror.css">
+  <script type="text/javascript" src="a_data/javascript.js"></script>
+  <link rel="stylesheet" type="text/css" href="a_data/bootstrap.css">
+  <script type="text/javascript" src="a_data/bootstrap.js"></script>
+
+  <style id="compiled-css" type="text/css">
+body,
+html {
+    padding: 15px;
+}
+
+.CodeMirror {
+    height: auto;
+}
+
+.CodeMirror pre span {
+    display: inline-block;
+}
+
+#editor {
+    border: 1px solid #DDD;
+}
+
+.CodeMirror .read-only {
+    background: #8882;
+}
+  </style>
+
+
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">//<![CDATA[
+
+  $(window).load(function(){
+
+var cm = CodeMirror.fromTextArea(document.getElementById("editor"), {
+  mode: "javascript",
+  indentUnit: 4,
+  lineNumbers: true,
+  height: "auto",
+});
+
+function getLastPos(cm) {
+  var line = CodeMirror.Pos(cm.lastLine()).line;
+  return {
+    line: line,
+    ch: cm.getLine(line).length
+  }
+}
+
+var inlineRanges = new Array();
+var texts = cm.getValue().split(/{%((?:[^%]|%[^}%]|%)*?)%}/);
+cm.setValue("")
+
+var oldMark, oldTo;
+texts.forEach((s, i) => {
+  var from = getLastPos(cm);
+  cm.replaceRange(s, CodeMirror.Pos(cm.lastLine()));
+  var to = getLastPos(cm);
+  var mark;
+  if (i % 2 == 0) {
+    // mark range frozen
+    mark = cm.markText(from, to, {
+      className: 'read-only',
+      readOnly: true,
+      inclusiveLeft: i == 0,
+      inclusiveRight: i == texts.length,
+    })
+    var lastRange = inlineRanges[inlineRanges.length - 1];
+    if (lastRange && !lastRange.to) {
+      lastRange.to = mark;
+    }
+  } else if (from.line == to.line) {
+    // editable range, inline.
+    inlineRanges.push({
+      from: oldMark,
+      to: null,
+    })
+  }
+
+  oldMark = mark;
+  oldTo = to;
+})
+
+function overlaps(pos) {
+  return inlineRanges.some(function(range) {
+    var from = range.from.find().to;
+    var to = range.to.find().from;
+    var hasOverlap =
+      pos.line == from.line &&
+      pos.ch >= from.ch &&
+      pos.line == to.line &&
+      pos.ch <= to.ch;
+    return hasOverlap;
+  })
+}
+cm.on("beforeChange", (cm, change) => {
+  if (change.update && overlaps(change.from)) {
+    change.update(null, null, [change.text.join("")])
+    console.log("cancelled")
+  }
+})
+//]]></script>
+
+</head>
+<body>
+<textarea id="editor" style="display: none;">
+function myScript() {{%
+    // Do some stuff here%}
+    if ({% /* TODO */ %}) {{%
+        // Some more stuff to do%}
+    }{%
+    return result;%}
+}
+</textarea>
+</body></html>
