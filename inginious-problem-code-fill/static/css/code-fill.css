@@ -1,0 +1,4 @@
+.CodeMirror span.read-only {
+    display: inline-block;
+    background: #8882;
+}
