@@ -4,9 +4,11 @@
 # more information about the licensing of this file.
 
 import os
+import re
 import web
 import json
 import gettext
+import itertools
 
 from inginious.common.tasks_problems import CodeProblem
 from inginious.frontend.task_problems import DisplayableCodeProblem
@@ -22,12 +24,24 @@ class CodeFillProblem(CodeProblem):
 
     @classmethod
     def get_type(self):
-        return "code-fill"
+        return "code_fill"
 
     @classmethod
     def parse_problem(cls, problem_content):
         return problem_content
 
+    @classmethod
+    def problem_type(self):
+        return dict
+
+    def getFillRegex(self):
+        regex = '({})'.format(re.sub(r'\\{\\%.+?\\%\\}', ')(.*?)(', re.escape(self._default), re.DOTALL))
+        return re.compile(regex, re.DOTALL)
+
+    def input_is_consistent(self, task_input, default_allowed_extension, default_max_size):
+        if not str(self.get_id()) in task_input:
+            return False
+        return task_input[self.get_id()]["matches"]
 
 class DisplayableCodeFillProblem(CodeFillProblem, DisplayableCodeProblem):
 
@@ -52,8 +66,7 @@ class DisplayableCodeFillProblem(CodeFillProblem, DisplayableCodeProblem):
         """ Show BasicCodeProblem and derivatives """
         header = ParsableText(self.gettext(language,self._header), "rst",
                               translation=self._translations.get(language, gettext.NullTranslations()))
-        return str(DisplayableCodeFillProblem.get_renderer(template_helper).code(self.get_id(), header, 8, 0, self._language, self._optional, self._default))
-    
+        return str(DisplayableCodeFillProblem.get_renderer(template_helper).tasks.code_fill(self.get_id(), header, 8, 0, self._language, self._optional, self._default))
 
     @classmethod
     def show_editbox_templates(cls, template_helper, key):
@@ -61,7 +74,27 @@ class DisplayableCodeFillProblem(CodeFillProblem, DisplayableCodeProblem):
 
     def adapt_input_for_backend(self, input_data):
         """ Adapt the input from web.py for the inginious.backend """
-        return "".join(input_data)
+        if not str(self.get_id()) in input_data:
+            return input_data
+
+        print(self.getFillRegex())
+        match = self.getFillRegex().fullmatch(input_data[self.get_id()])
+        print(match)
+        print(match.groups())
+        if not match:
+            input_data[self.get_id()] = { "text": input_data[self.get_id()],
+                                          "template": self._default,
+                                          "matches": False, }
+
+        template = "".join(t.format(s) for (s, t) in zip(match.groups(), itertools.cycle(("{}", "{{%{}%}}"))))
+        print(template)
+        input_data[self.get_id()] = { "text": input_data[self.get_id()],
+                                      "template": self._default,
+                                      "template_text": template,
+                                      "matches": True, }
+        print(input_data[self.get_id()])
+        return input_data
+
 
 
 
