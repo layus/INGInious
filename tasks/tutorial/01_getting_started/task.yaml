@@ -76,11 +76,11 @@ network_grading: false
 order: 0
 problems:
     thecode:
-        type: code_fill
-        header: Lol
-        language: python
         default: print({% %})
         name: Hello world
+        header: Lol
+        type: code_fill
+        language: python
 run_cmd: ''
 stored_submissions: 0
 submission_limit:

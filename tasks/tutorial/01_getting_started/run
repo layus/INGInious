@@ -1,7 +1,8 @@
 #!/bin/bash
 
-getinput "thecode" > student/student_code.py
-output=$(python3 student/student_code.py)
+#getinput "thecode" > student/student_code.py
+python3 -c "from inginious import input; print(input.get_input('thecode')['code'])" > student/student_code.py
+output=$(run_student python3 student/student_code.py)
 
 if [ "$output" = "Hello World!" ]; then
     feedback-result success

@@ -72,27 +72,19 @@ CodeMirror.defineInitHook( (cm) => {
   })
 
   function getRangeValue({from, to}) {
-      console.log(from, to)
-      var str = cm.getRange(from, to)
-      console.log(from, to, str)
       return cm.getRange(from, to)
   }
   function getEditableRangeValue({from, to}) {
-      console.log(from, to)
       return getRangeValue({from: from.find().to, to: to.find().from})
   }
   function getStringContent() {
     var i = 0;
     var str = "";
-    console.log(frozenRanges);
-    console.log(editableRanges);
     while (true) {
-      console.log([str])
       if (!frozenRanges[i]) {
         return str;
       }
       str += getRangeValue(frozenRanges[i].find())
-      console.log([str])
       if (!editableRanges[i]) {
         return str;
       }
@@ -108,28 +100,6 @@ CodeMirror.defineInitHook( (cm) => {
     cm.getTextArea().value = getStringContent()
   }
 
-  /* This does not work because it blocks history in an infinite loop
-  cm.on("changes", (cm, changes) => {
-    // check that all fillable fields are non-empty.
-    // Otherwise, re-add the todo.
-    cm.operation(() => {
-      editableRanges.forEach( r => {
-        var from = r.from.find().to
-        var to = r.to.find().from
-        var val = cm.getRange(from, to)
-        console.log([val])
-        if (val == "") {
-          if (r.inline) {
-            cm.replaceRange(" ", to, to);
-          } else {
-            cm.setCursor(from)
-            cm.execCommand("newlineAndIndent")
-          }
-        }
-      })
-    })
-  })
-  */
 })
 
 function studio_init_template_code_fill(well, pid, problem)
@@ -142,7 +112,11 @@ function load_input_code_fill(submissionid, key, input)
     if(key in input) {
         codeEditors[key].toTextArea();
         var elem = $('textarea[name="'+key+'"]')
-        elem[0].value = input[key].text;
+        if (input[key].template == elem.attr('data-x-template')) {
+            elem[0].value = input[key].input;
+        } else {
+            elem[0].value = elem.attr('data-x-template')
+        }
         registerCodeEditor(elem[0], elem.attr('data-x-language'), elem.attr('data-x-lines'));
     } else {
         // TODO: console.log("No idea what to do here")

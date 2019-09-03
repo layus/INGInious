@@ -35,7 +35,7 @@ class CodeFillProblem(CodeProblem):
         return dict
 
     def getFillRegex(self):
-        regex = '({})'.format(re.sub(r'\\{\\%.+?\\%\\}', ')(.*?)(', re.escape(self._default), re.DOTALL))
+        regex = '({})'.format(re.sub(r'\\{\\%.+?\\%\\}', r')\{\%(.*?)\%\}(', re.escape(self._default), re.DOTALL))
         return re.compile(regex, re.DOTALL)
 
     def input_is_consistent(self, task_input, default_allowed_extension, default_max_size):
@@ -78,19 +78,23 @@ class DisplayableCodeFillProblem(CodeFillProblem, DisplayableCodeProblem):
             return input_data
 
         print(self.getFillRegex())
+        print(input_data[self.get_id()])
         match = self.getFillRegex().fullmatch(input_data[self.get_id()])
-        print(match)
-        print(match.groups())
         if not match:
-            input_data[self.get_id()] = { "text": input_data[self.get_id()],
+            input_data[self.get_id()] = { "input": input_data[self.get_id()],
                                           "template": self._default,
                                           "matches": False, }
+            return input_data
+
+        print(match)
+        print(match.groups())
 
         template = "".join(t.format(s) for (s, t) in zip(match.groups(), itertools.cycle(("{}", "{{%{}%}}"))))
         print(template)
-        input_data[self.get_id()] = { "text": input_data[self.get_id()],
+        input_data[self.get_id()] = { "input": input_data[self.get_id()],
                                       "template": self._default,
-                                      "template_text": template,
+                                      "code": ''.join(match.groups()),
+                                      "regions": match.groups()[1::2],
                                       "matches": True, }
         print(input_data[self.get_id()])
         return input_data
